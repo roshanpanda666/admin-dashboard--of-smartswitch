@@ -3,13 +3,13 @@ import Nav from './Nav'
 const Home = () => {
   return (
     <div>
-      <div >
-        <Nav></Nav>
-        <div className='flex justify-center items-center lg:flex-row flex-col'>
-          <div className='lg:border-r-[1px] border-0 border-[#273464] lg:w-[40%] w-full  flex flex-col justify-center lg:items-end items-center ml-8 '>
-            <div className='w-[83%] h-30 flex justify-center items-center'>
-              <div className='lg:w-[60%] h-[90%] w-full'>
-                <div className='rounded-4xl bg-[#141A30] h-[90%] w-[80%] flex flex-col justify-center lg:items-start items-center'>
+      
+        <Nav className="hidden lg:block"></Nav>
+        <div className='flex justify-center items-center lg:flex-row flex-col '>
+          <div className='lg:border-r-[1px] border-0 border-[#273464] lg:w-[40%] w-full  flex flex-col justify-center lg:items-end items-center'>
+            <div className='lg:w-[83%] w-full h-30 flex justify-center items-center'>
+              <div className='lg:w-[60%] h-[90%] w-full flex justify-center items-center lg:justify-center '>
+                <div className='rounded-4xl bg-[#141A30] h-[90%] w-[80%] lg:w-[80%] flex flex-col justify-center lg:justify-center lg:items-start items-center'>
                   <div className='lg:text-[1.3rem] test-[0.5rem] lg:ml-3 text-center lg:text-start' >LIVE RELAY STATUS</div>
                   <div>
                     <div className='rounded-2xl lg:w-28 w-16 h-9 bg-[#273464] flex text-center items-center justify-end ml-3'>
@@ -21,8 +21,8 @@ const Home = () => {
                 </div>
                 
               </div>
-              <div className='lg:w-[40%] w-full h-[90%] '>
-              <div className='rounded-4xl bg-[#141A30] h-[90%] w-[80%] flex flex-col justify-center items-start'>
+              <div className='lg:w-[40%] w-full h-[90%] flex justify-center items-start lg:justify-center '>
+              <div className='rounded-4xl bg-[#141A30] h-[90%] w-[70%] flex flex-col justify-center items-start '>
                   <div className='lg:text-[1.3rem] text-[0.6rem] ml-3'>CONDITION</div>
                   <div>
                     <div className=' w-28 h-9 flex text-center items-center justify-start ml-3'>
@@ -34,7 +34,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className='w-[83%]  h-63'>
+            <div className='lg:w-[83%] w-[93%] flex justify-center items-center  h-63 lg:mt-0 mt-3'>
               <div className='w-[93%] h-full rounded-4xl bg-[#141A30] flex justify-center items-center'>
                 <div className='h-full w-[30%] flex flex-col lg:text-2xl'>
                   <div className='mt-3'>Pin:</div>
@@ -59,8 +59,8 @@ const Home = () => {
                 </div>  
               </div>
             </div>
-            <div className='w-[83%]  h-32'>
-              <div className='bg-[#141A30] h-[90%] w-[93%] rounded-3xl mt-4 flex justify-center items-center flex-col'>
+            <div className='lg:w-[83%] w-[93%]  h-32 flex justify-center items-center mt-3'>
+              <div className='bg-[#141A30] h-[90%] w-[93%] rounded-3xl flex justify-center items-center flex-col mt-7 lg:mt-0'>
                   <div className=' w-full h-full lg:text-[1.3rem] ml-4'>
                     REMOTE SWITCH CONTROL
                   </div>
@@ -80,7 +80,7 @@ const Home = () => {
 
               </div>
             </div>
-            <div className='w-[83%]  h-20 mt-4 '>
+            <div className='lg:w-[83%] w-[93%] flex justify-center items-center  h-20 lg:mt-4 mt-12'>
               <div className=' bg-[#141A30] rounded-3xl w-[93%] h-full flex justify-center items-center'>
               <div className=' w-full h-full'>
                 <div className='mt-2'>CONNECTION STATUS</div>
@@ -155,7 +155,7 @@ const Home = () => {
           </div>
         </div>
         
-      </div>
+      
     </div>
   )
 }
