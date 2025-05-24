@@ -4,7 +4,7 @@ import Home from './components/Home'
 const page = () => {
   return (
     <div>
-      <Home></Home>
+      <Home />
     </div>
   )
 }
