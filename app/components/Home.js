@@ -1,39 +1,39 @@
-import Nav from './Nav'
-
 const Home = () => {
   return (
-    <div className="min-h-screen bg-[#0F1727] text-white ">
+    <div className="min-h-screen bg-[#0F1727] text-white">
       <Nav />
       <div className="flex flex-col lg:flex-row justify-center items-start w-full px-4 lg:px-20 py-6 gap-8">
+
         {/* Left Side */}
         <div className="w-full lg:w-[40%] flex flex-col gap-6">
 
+          {/* Relay & Condition */}
           <div className="flex flex-col lg:flex-row gap-4 text-center">
-            <div className="flex-1 bg-[#141A30] p-4 rounded-3xl flex flex-col justify-center items-center ">
+            <div className="flex-1 bg-[#141A30] p-4 rounded-3xl flex flex-col justify-center items-center">
               <h3 className="text-lg font-semibold">LIVE RELAY STATUS</h3>
               <div className="mt-3 w-24 h-9 bg-[#273464] rounded-2xl flex items-center justify-end">
                 <div className="w-[40%] h-full bg-[#3a4a87] rounded-full flex items-center justify-center">ON</div>
               </div>
             </div>
-            <div className="flex-1 bg-[#141A30] text-center p-4 rounded-3xl flex flex-col">
+            <div className="flex-1 bg-[#141A30] p-4 rounded-3xl flex flex-col justify-center items-center">
               <h3 className="text-lg font-semibold">CONDITION</h3>
               <div className="mt-3 text-green-300 text-xl">GOOD</div>
             </div>
           </div>
 
-
+          {/* Pin/Port/Relay Info */}
           <div className="bg-[#141A30] rounded-3xl p-4 flex justify-between">
             <div className="flex flex-col gap-4 items-center text-xl">
               <span className="text-gray-400">Pin:</span>
-              <div className="w-14 h-14 bg-[#0E1523] flex items-center justify-center text-green-300 rounded-lg">09</div>
-              <div className="w-14 h-14 bg-[#0E1523] flex items-center justify-center text-green-300 rounded-lg">10</div>
-              <div className="w-14 h-14 bg-[#0E1523] flex items-center justify-center text-green-300 rounded-lg">11</div>
+              <div className="w-14 h-14 bg-[#0E1523] text-green-300 flex items-center justify-center rounded-lg">09</div>
+              <div className="w-14 h-14 bg-[#0E1523] text-green-300 flex items-center justify-center rounded-lg">10</div>
+              <div className="w-14 h-14 bg-[#0E1523] text-green-300 flex items-center justify-center rounded-lg">11</div>
             </div>
             <div className="flex flex-col gap-4 items-center text-xl">
               <span className="text-gray-400">Port:</span>
-              <div className="w-20 h-14 bg-[#0E1523] flex items-center justify-center text-[#09A1FF] rounded-lg">COM 8</div>
-              <div className="w-20 h-14 bg-[#0E1523] flex items-center justify-center text-[#09A1FF] rounded-lg">COM 8</div>
-              <div className="w-20 h-14 bg-[#0E1523] flex items-center justify-center text-[#09A1FF] rounded-lg">COM 8</div>
+              <div className="w-20 h-14 bg-[#0E1523] text-[#09A1FF] flex items-center justify-center rounded-lg">COM 8</div>
+              <div className="w-20 h-14 bg-[#0E1523] text-[#09A1FF] flex items-center justify-center rounded-lg">COM 8</div>
+              <div className="w-20 h-14 bg-[#0E1523] text-[#09A1FF] flex items-center justify-center rounded-lg">COM 8</div>
             </div>
             <div className="flex flex-col gap-4 items-center text-xl">
               <span className="text-gray-400">Relay:</span>
@@ -43,7 +43,7 @@ const Home = () => {
             </div>
           </div>
 
-         
+          {/* Remote Control */}
           <div className="bg-[#141A30] rounded-3xl p-4 flex flex-col gap-2">
             <h3 className="text-lg font-semibold">REMOTE SWITCH CONTROL</h3>
             <div className="flex gap-2 mt-2">
@@ -59,6 +59,7 @@ const Home = () => {
             </div>
           </div>
 
+          {/* Connection Status */}
           <div className="bg-[#141A30] rounded-3xl p-4 flex justify-between items-center">
             <div>
               <h3 className="text-md text-gray-300">CONNECTION STATUS</h3>
@@ -70,7 +71,8 @@ const Home = () => {
 
         {/* Right Side */}
         <div className="w-full lg:w-[60%] flex flex-col gap-6">
-      
+
+          {/* Face Detection Logs */}
           <div className="bg-[#141A30] rounded-3xl p-4">
             <h3 className="text-lg mb-4">FACE DETECTION LOGS</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -89,7 +91,7 @@ const Home = () => {
             </div>
           </div>
 
-      
+          {/* Devices */}
           <div className="bg-[#141A30] rounded-3xl p-4">
             <h3 className="text-lg mb-2">DEVICES</h3>
             <div className="grid grid-cols-3 gap-4 text-center">
@@ -114,10 +116,11 @@ const Home = () => {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
