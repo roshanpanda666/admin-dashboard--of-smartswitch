@@ -1,4 +1,6 @@
+import Nav from './Nav'
 const Home = () => {
+  
   return (
     <div className="min-h-screen bg-[#0F1727] text-white">
       <Nav />
