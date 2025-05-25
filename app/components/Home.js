@@ -1,6 +1,7 @@
 "use client";
 import Nav from './Nav';
 import { useEffect, useState } from 'react';
+import Timelog from './Timelog';
 
 const Home = () => {
   const [relayStatus, setRelayStatus] = useState('Loading...');
@@ -61,36 +62,12 @@ const Home = () => {
       }
     };
 
-    const fetchalldata = async()=>{
-      try {
-        const res = await fetch('/api/getalldata');
-        const result = await res.json();
-        // console.log("Latest Relay Data:", result.data.relay);
-  
-        if (result.success && result.data) {
-          setmedium(result.data.medium)
-          settimestamp(result.data.timestamp)
-          alert(result.data.medium)
-          alert(result.data.timestamp)
-        } else {
-          setmedium('Unavailable');
-          settimestamp('Unavilable')
-        }
-      } catch (error) {
-        console.error('Failed to fetch relay status:', error);
-        setRelayStatus('Error');
-        console.error('Failed to fetch status:', error);
-        setRelayStatus('Error');
-        console.error('Failed to fetch connection medium:', error);
-        setmedium('error')
-      }
-    }
+    
 
 
     
   
     fetchRelayStatus()
-    fetchalldata()
 
     
     // Auto refresh every 5 seconds
@@ -178,48 +155,12 @@ const Home = () => {
 
           {/*  Detection Logs */}
           <div className="bg-[#141A30] rounded-3xl p-4">
-            <h3 className="text-lg mb-4"> </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <div className="bg-[#0F1727] text-gray-400 p-2">TIME STAMP</div>
-                <div className="mt-2 text-lg">2025-05-24 12:31:45</div>
-                <div className="mt-2 bg-[#0F1727] text-lg">2025-05-24 12:31:45</div>
-                <div className="mt-2 text-lg">2025-05-24 12:31:45</div>
-              </div>
-              <div>
-                <div className="bg-[#0F1727] text-gray-400 p-2">DETAILS</div>
-                <div className="mt-2 text-lg">Face detected</div>
-                <div className="mt-2 bg-[#0F1727] text-lg">Face detected</div>
-                <div className="mt-2 text-lg">Face detected</div>
-              </div>
-            </div>
+            <Timelog></Timelog>
           </div>
           
 
           {/* Devices */}
-          <div className="bg-[#141A30] rounded-3xl p-4">
-            <h3 className="text-lg mb-2">DEVICES</h3>
-            <div className="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <div className="bg-[#0F1727] text-gray-400 p-2">NAME</div>
-                <div className="mt-2 text-lg">DEVICE 1</div>
-                <div className="mt-2 bg-[#0F1727] text-lg p-2">DEVICE 2</div>
-                <div className="mt-2 text-lg">DEVICE 3</div>
-              </div>
-              <div>
-                <div className="bg-[#0F1727] text-gray-400 p-2">STATUS</div>
-                <div className="mt-2 text-[#31C370] text-lg">Online</div>
-                <div className="mt-2 bg-[#0F1727] text-[#EF6060] text-lg">Offline</div>
-                <div className="mt-2 text-[#EF6060] text-lg">Offline</div>
-              </div>
-              <div>
-                <div className="bg-[#0F1727] text-gray-400 mt-2">LAST ACTIVE</div>
-                <div className="mt-2 text-sm lg:text-lg">2025-05-24 12:31:45</div>
-                <div className="mt-2 bg-[#0F1727] text-sm lg:text-lg">2025-05-24 12:31:45</div>
-                <div className="mt-2 text-sm lg:text-lg">2025-05-24 12:31:45</div>
-              </div>
-            </div>
-          </div>
+          
 
         </div>
       </div>
