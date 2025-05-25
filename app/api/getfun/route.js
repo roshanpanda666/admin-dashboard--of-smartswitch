@@ -12,6 +12,7 @@ export async function GET() {
     console.log(latestEntry.relay);
     console.log(latestEntry.statuss);
     console.log(latestEntry.medium)
+    console.log(latestEntry.timestamp);
     return NextResponse.json({ success: true, data: latestEntry });
   } catch (error) {
     console.error("API Error:", error);

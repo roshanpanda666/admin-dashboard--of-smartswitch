@@ -7,7 +7,35 @@ const Home = () => {
   const [statuss, setstatuss] = useState('Loading...');
   const [medium, setmedium] = useState('Loading...');
 
+  const handlePost = async () => {
+    try {
+      const response = await fetch('/api/remotepostfun', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          statuss: 'Working',
+          relay: 'ON',
+          medium: 'dashboard',
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok || !data.success) {
+        console.error('❌ POST failed:', data.error || 'Unknown error');
+        alert('POST failed: ' + (data.error || 'Unknown error'));
+        return;
+      }
+  
+      console.log('✅ POST success:', data);
+      alert('POST success');
+    } catch (error) {
+      console.error('🚨 Error in POST request:', error);
+      alert('POST request failed: ' + error.message);
+    }
+  };
   useEffect(() => {
+    
     const fetchRelayStatus = async () => {
       try {
         const res = await fetch('/api/getfun');
@@ -35,11 +63,17 @@ const Home = () => {
     
   
     fetchRelayStatus();
+
+    
     // Auto refresh every 5 seconds
   const interval = setInterval(fetchRelayStatus, 1000);
   // Cleanup on unmount
   return () => clearInterval(interval);
+
+  
   }, []);
+
+
 
   return (
     <div className="min-h-screen bg-[#0F1727] text-white">
@@ -92,7 +126,7 @@ const Home = () => {
               <div className="flex-1 bg-[#273464] text-[#09A1FF] rounded-2xl flex items-center justify-center text-xl">ONLINE</div>
               <div className={`${relayStatus === 'ON' ? 'text-green-400' : 'text-red-500'} w-20 text-center`}>{relayStatus==='ON' ? 'Turned-on':'turned-off'}</div>
               <div className="flex-1 bg-[#0F1727] rounded-2xl flex items-center justify-between px-2">
-                <div className="bg-[#EF6060] w-[40%] h-[70%] flex items-center justify-center font-bold text-black rounded-full text-xl">OFF</div>
+                <div className="bg-[#EF6060] w-[40%] h-[70%] flex items-center justify-center font-bold text-black rounded-full text-xl cursor-pointer" onClick={handlePost}>OFF</div>
                 <div className="flex flex-col gap-1 w-[20%] h-[70%]">
                   <div className="w-full h-2 bg-[#31C370] rounded-4xl"></div>
                   <div className="w-full h-2 bg-[#D9D9D9] rounded-4xl"></div>
@@ -114,9 +148,9 @@ const Home = () => {
         {/* Right Side */}
         <div className="w-full lg:w-[60%] flex flex-col gap-6">
 
-          {/* Face Detection Logs */}
+          {/*  Detection Logs */}
           <div className="bg-[#141A30] rounded-3xl p-4">
-            <h3 className="text-lg mb-4">FACE DETECTION LOGS</h3>
+            <h3 className="text-lg mb-4"> DETECTION LOGS</h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <div className="bg-[#0F1727] text-gray-400 p-2">TIME STAMP</div>
