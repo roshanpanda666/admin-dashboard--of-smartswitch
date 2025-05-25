@@ -1,6 +1,36 @@
-import Nav from './Nav'
+"use client";
+import Nav from './Nav';
+import { useEffect, useState } from 'react';
+
 const Home = () => {
+  const [relayStatus, setRelayStatus] = useState('Loading...');
+
+  useEffect(() => {
+    const fetchRelayStatus = async () => {
+      try {
+        const res = await fetch('/api/getfun');
+        const result = await res.json();
+        console.log("Latest Relay Data:", result.data.relay);
   
+        if (result.success && result.data) {
+          setRelayStatus(result.data.relay);
+        } else {
+          setRelayStatus('Unavailable');
+        }
+      } catch (error) {
+        console.error('Failed to fetch relay status:', error);
+        setRelayStatus('Error');
+      }
+    };
+  
+    fetchRelayStatus();
+    // Auto refresh every 5 seconds
+  const interval = setInterval(fetchRelayStatus, 1000);
+  //  rather then refreshing on every 1 second refresh it when new data adde
+  // Cleanup on unmount
+  return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0F1727] text-white">
       <Nav />
@@ -13,8 +43,8 @@ const Home = () => {
           <div className="flex flex-col lg:flex-row gap-4 text-center">
             <div className="flex-1 bg-[#141A30] p-4 rounded-3xl flex flex-col justify-center items-center">
               <h3 className="text-lg font-semibold">LIVE RELAY STATUS</h3>
-              <div className="mt-3 w-24 h-9 bg-[#273464] rounded-2xl flex items-center justify-end">
-                <div className="w-[40%] h-full bg-[#3a4a87] rounded-full flex items-center justify-center">ON</div>
+              <div className="mt-3 w-24 h-9 bg-[#273464] rounded-2xl flex items-center justify-center">
+                <div className='text-green-400'>{relayStatus}</div>
               </div>
             </div>
             <div className="flex-1 bg-[#141A30] p-4 rounded-3xl flex flex-col justify-center items-center">
@@ -52,7 +82,7 @@ const Home = () => {
               <div className="flex-1 bg-[#273464] text-[#09A1FF] rounded-2xl flex items-center justify-center text-xl">ONLINE</div>
               <div className="flex-1 text-[#31C370] flex items-center justify-center text-xl">ONLINE</div>
               <div className="flex-1 bg-[#0F1727] rounded-2xl flex items-center justify-between px-2">
-                <div className="bg-[#EF6060] w-[40%] h-[70%] flex items-center justify-center  font-bold text-black rounded-full text-xl">OFF</div>
+                <div className="bg-[#EF6060] w-[40%] h-[70%] flex items-center justify-center font-bold text-black rounded-full text-xl">OFF</div>
                 <div className="flex flex-col gap-1 w-[20%] h-[70%]">
                   <div className="w-full h-2 bg-[#31C370] rounded-4xl"></div>
                   <div className="w-full h-2 bg-[#D9D9D9] rounded-4xl"></div>
@@ -81,7 +111,7 @@ const Home = () => {
               <div>
                 <div className="bg-[#0F1727] text-gray-400 p-2">TIME STAMP</div>
                 <div className="mt-2 text-lg">2025-05-24 12:31:45</div>
-                <div className="mt-2 bg-[#0F1727] text-lg ">2025-05-24 12:31:45</div>
+                <div className="mt-2 bg-[#0F1727] text-lg">2025-05-24 12:31:45</div>
                 <div className="mt-2 text-lg">2025-05-24 12:31:45</div>
               </div>
               <div>

@@ -18,9 +18,11 @@
     --foreground: #ededed;
   }
 }
+/* styles/globals.css */
 
 body {
   background: #0E1523;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  
 }
