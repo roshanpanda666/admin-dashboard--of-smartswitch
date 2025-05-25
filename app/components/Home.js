@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 const Home = () => {
   const [relayStatus, setRelayStatus] = useState('Loading...');
+  const [statuss, setstatuss] = useState('Loading...');
 
   useEffect(() => {
     const fetchRelayStatus = async () => {
@@ -14,14 +15,19 @@ const Home = () => {
   
         if (result.success && result.data) {
           setRelayStatus(result.data.relay);
+          setstatuss(result.data.statuss)
         } else {
           setRelayStatus('Unavailable');
+          setstatuss('Unavilable')
         }
       } catch (error) {
         console.error('Failed to fetch relay status:', error);
         setRelayStatus('Error');
+        console.error('Failed to fetch status:', error);
+        setRelayStatus('Error');
       }
     };
+    
   
     fetchRelayStatus();
     // Auto refresh every 5 seconds
@@ -48,7 +54,7 @@ const Home = () => {
             </div>
             <div className="flex-1 bg-[#141A30] p-4 rounded-3xl flex flex-col justify-center items-center">
               <h3 className="text-lg font-semibold">CONDITION</h3>
-              <div className="mt-3 text-green-300 text-xl">GOOD</div>
+              <div className="mt-3 text-green-300 text-xl">{statuss}</div>
             </div>
           </div>
 
