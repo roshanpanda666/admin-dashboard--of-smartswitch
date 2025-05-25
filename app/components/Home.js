@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 const Home = () => {
   const [relayStatus, setRelayStatus] = useState('Loading...');
   const [statuss, setstatuss] = useState('Loading...');
+  const [medium, setmedium] = useState('Loading...');
 
   useEffect(() => {
     const fetchRelayStatus = async () => {
@@ -14,17 +15,21 @@ const Home = () => {
         // console.log("Latest Relay Data:", result.data.relay);
   
         if (result.success && result.data) {
-          setRelayStatus(result.data.relay);
+          setRelayStatus(result.data.relay)
           setstatuss(result.data.statuss)
+          setmedium(result.data.medium)
         } else {
           setRelayStatus('Unavailable');
           setstatuss('Unavilable')
+          setmedium('unavilable')
         }
       } catch (error) {
         console.error('Failed to fetch relay status:', error);
         setRelayStatus('Error');
         console.error('Failed to fetch status:', error);
         setRelayStatus('Error');
+        console.error('Failed to fetch connection medium:', error);
+        setmedium('error')
       }
     };
     
@@ -53,8 +58,8 @@ const Home = () => {
               </div>
             </div>
             <div className="flex-1 bg-[#141A30] p-4 rounded-3xl flex flex-col justify-center items-center">
-              <h3 className="text-lg font-semibold">CONDITION</h3>
-              <div className={`${statuss === 'Working' ? 'text-green-400' : 'text-red-500'}`}>{statuss}</div>
+              <h3 className="text-lg font-semibold">Medium</h3>
+              <div className="text-gray-400">{medium}</div>
             </div>
           </div>
 
@@ -63,20 +68,20 @@ const Home = () => {
             <div className="flex flex-col gap-4 items-center text-xl">
               <span className="text-gray-400">Pin:</span>
               <div className="w-14 h-14 bg-[#0E1523] text-green-300 flex items-center justify-center rounded-lg">09</div>
-              <div className="w-14 h-14 bg-[#0E1523] text-green-300 flex items-center justify-center rounded-lg">10</div>
-              <div className="w-14 h-14 bg-[#0E1523] text-green-300 flex items-center justify-center rounded-lg">11</div>
+              <div className="w-14 h-14 bg-[#0E1523] text-red-400 flex items-center justify-center rounded-lg">10</div>
+              <div className="w-14 h-14 bg-[#0E1523] text-red-400 flex items-center justify-center rounded-lg">11</div>
             </div>
             <div className="flex flex-col gap-4 items-center text-xl">
               <span className="text-gray-400">Port:</span>
               <div className="w-20 h-14 bg-[#0E1523] text-[#09A1FF] flex items-center justify-center rounded-lg">COM 8</div>
-              <div className="w-20 h-14 bg-[#0E1523] text-[#09A1FF] flex items-center justify-center rounded-lg">COM 8</div>
-              <div className="w-20 h-14 bg-[#0E1523] text-[#09A1FF] flex items-center justify-center rounded-lg">COM 8</div>
+              <div className="w-20 h-14 bg-[#0E1523] text-gray-500 flex items-center justify-center rounded-lg">offline</div>
+              <div className="w-20 h-14 bg-[#0E1523] text-gray-500 flex items-center justify-center rounded-lg">offline</div>
             </div>
             <div className="flex flex-col gap-4 items-center text-xl">
               <span className="text-gray-400">Relay:</span>
               <div className="w-14 h-14 bg-[#0E1523] flex items-center justify-center rounded-lg">01</div>
-              <div className="w-14 h-14 bg-[#0E1523] flex items-center justify-center rounded-lg">02</div>
-              <div className="w-14 h-14 bg-[#0E1523] flex items-center justify-center rounded-lg">03</div>
+              <div className="w-14 h-14 bg-[#0E1523] flex items-center justify-center rounded-lg text-gray-500">02</div>
+              <div className="w-14 h-14 bg-[#0E1523] flex items-center justify-center rounded-lg text-gray-500">03</div>
             </div>
           </div>
 
@@ -85,7 +90,7 @@ const Home = () => {
             <h3 className="text-lg font-semibold">REMOTE SWITCH CONTROL</h3>
             <div className="flex gap-2 mt-2">
               <div className="flex-1 bg-[#273464] text-[#09A1FF] rounded-2xl flex items-center justify-center text-xl">ONLINE</div>
-              <div className={`${relayStatus === 'ON' ? 'text-green-400' : 'text-red-500'} w-12 text-center`}>{relayStatus==='ON' ? 'online':'offline'}</div>
+              <div className={`${relayStatus === 'ON' ? 'text-green-400' : 'text-red-500'} w-20 text-center`}>{relayStatus==='ON' ? 'Turned-on':'turned-off'}</div>
               <div className="flex-1 bg-[#0F1727] rounded-2xl flex items-center justify-between px-2">
                 <div className="bg-[#EF6060] w-[40%] h-[70%] flex items-center justify-center font-bold text-black rounded-full text-xl">OFF</div>
                 <div className="flex flex-col gap-1 w-[20%] h-[70%]">
@@ -100,7 +105,7 @@ const Home = () => {
           <div className="bg-[#141A30] rounded-3xl p-4 flex justify-between items-center">
             <div>
               <h3 className="text-md text-gray-300">CONNECTION STATUS</h3>
-              <div className="text-[#31C370] text-xl">CONNECTED</div>
+              <div className="text-[#31C370] text-xl">{ statuss ? "connected" :"disconnected"}</div>
             </div>
             <div className="border-2 border-[#273464] bg-[#090F19] rounded-2xl w-20 h-16 flex items-center justify-center text-3xl">{relayStatus === "ON"?"^_^":"x_x"}</div>
           </div>
