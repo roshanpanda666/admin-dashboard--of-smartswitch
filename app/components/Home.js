@@ -10,7 +10,7 @@ const Home = () => {
       try {
         const res = await fetch('/api/getfun');
         const result = await res.json();
-        console.log("Latest Relay Data:", result.data.relay);
+        // console.log("Latest Relay Data:", result.data.relay);
   
         if (result.success && result.data) {
           setRelayStatus(result.data.relay);
@@ -26,7 +26,6 @@ const Home = () => {
     fetchRelayStatus();
     // Auto refresh every 5 seconds
   const interval = setInterval(fetchRelayStatus, 1000);
-  //  rather then refreshing on every 1 second refresh it when new data adde
   // Cleanup on unmount
   return () => clearInterval(interval);
   }, []);
