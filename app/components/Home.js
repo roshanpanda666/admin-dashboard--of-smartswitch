@@ -79,7 +79,7 @@ const Home = () => {
             <h3 className="text-lg font-semibold">REMOTE SWITCH CONTROL</h3>
             <div className="flex gap-2 mt-2">
               <div className="flex-1 bg-[#273464] text-[#09A1FF] rounded-2xl flex items-center justify-center text-xl">ONLINE</div>
-              <div className="flex-1 text-[#31C370] flex items-center justify-center text-xl">ONLINE</div>
+              <div className="flex-1 text-[#31C370] flex items-center justify-center text-xl">{relayStatus}</div>
               <div className="flex-1 bg-[#0F1727] rounded-2xl flex items-center justify-between px-2">
                 <div className="bg-[#EF6060] w-[40%] h-[70%] flex items-center justify-center font-bold text-black rounded-full text-xl">OFF</div>
                 <div className="flex flex-col gap-1 w-[20%] h-[70%]">
