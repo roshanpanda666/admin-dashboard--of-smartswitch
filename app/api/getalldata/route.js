@@ -3,27 +3,9 @@ import DataModel from "@/lib/model/status";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  try {
-    await mongoose.connect(connectionURI);
-
-    // Fetch the latest 6 entries
-    const latestEntries = await DataModel.find()
-      .sort({ timestamp: -1 })
-      .limit(6);
-
-    // Debug log each entry
-    latestEntries.forEach((entry, i) => {
-      console.log(`Entry ${i + 1}:`);
-      console.log("  Relay:", entry.relay);
-      console.log("  Status:", entry.statuss);
-      console.log("  Medium:", entry.medium);
-      console.log("  Timestamp:", entry.timestamp);
-    });
-
-    return NextResponse.json({ success: true, data: latestEntries });
-  } catch (error) {
-    console.error("API Error:", error);
-    return NextResponse.json({ success: false, error: "Failed to fetch data" });
-  }
+export async function GET(){
+    await mongoose.connect(connectionURI)
+    const data=await DataModel.find().sort({ _id: -1 }).limit(5); // .limit(5);         // Limit to last 5
+    console.log(data)
+    return NextResponse.json({success:true,data:data})
 }

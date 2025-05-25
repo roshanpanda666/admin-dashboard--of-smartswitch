@@ -6,8 +6,7 @@ const Home = () => {
   const [relayStatus, setRelayStatus] = useState('Loading...');
   const [statuss, setstatuss] = useState('Loading...');
   const [medium, setmedium] = useState('Loading...');
-  const [logs, setLogs] = useState([]); // Store logs here
-
+  const [timestamp,settimestamp]=useState('loading...')
   const handlePost = async () => {
     try {
       const response = await fetch('/api/remotepostfun', {
@@ -19,15 +18,15 @@ const Home = () => {
           medium: 'dashboard',
         }),
       });
-
+  
       const data = await response.json();
-
+  
       if (!response.ok || !data.success) {
         console.error('❌ POST failed:', data.error || 'Unknown error');
         alert('POST failed: ' + (data.error || 'Unknown error'));
         return;
       }
-
+  
       console.log('✅ POST success:', data);
       alert('POST success');
     } catch (error) {
@@ -35,55 +34,74 @@ const Home = () => {
       alert('POST request failed: ' + error.message);
     }
   };
-
   useEffect(() => {
-    // Fetch relay status as before
+    
     const fetchRelayStatus = async () => {
       try {
         const res = await fetch('/api/getfun');
         const result = await res.json();
+        // console.log("Latest Relay Data:", result.data.relay);
+  
         if (result.success && result.data) {
-          setRelayStatus(result.data.relay);
-          setstatuss(result.data.statuss);
-          setmedium(result.data.medium);
+          setRelayStatus(result.data.relay)
+          setstatuss(result.data.statuss)
+          setmedium(result.data.medium)
         } else {
           setRelayStatus('Unavailable');
-          setstatuss('Unavilable');
-          setmedium('unavilable');
+          setstatuss('Unavilable')
+          setmedium('unavilable')
         }
       } catch (error) {
+        console.error('Failed to fetch relay status:', error);
         setRelayStatus('Error');
-        setmedium('error');
+        console.error('Failed to fetch status:', error);
+        setRelayStatus('Error');
+        console.error('Failed to fetch connection medium:', error);
+        setmedium('error')
       }
     };
 
-    // Fetch all detection logs
-    const fetchLogs = async () => {
+    const fetchalldata = async()=>{
       try {
         const res = await fetch('/api/getalldata');
         const result = await res.json();
-        // Expecting result.data.logs to be an array: [{ timestamp, medium }]
-        if (result.success && result.data && Array.isArray(result.data.logs)) {
-          setLogs(result.data.logs);
+        // console.log("Latest Relay Data:", result.data.relay);
+  
+        if (result.success && result.data) {
+          setmedium(result.data.medium)
+          settimestamp(result.data.timestamp)
+          alert(result.data.medium)
+          alert(result.data.timestamp)
         } else {
-          setLogs([]);
+          setmedium('Unavailable');
+          settimestamp('Unavilable')
         }
       } catch (error) {
-        setLogs([]);
+        console.error('Failed to fetch relay status:', error);
+        setRelayStatus('Error');
+        console.error('Failed to fetch status:', error);
+        setRelayStatus('Error');
+        console.error('Failed to fetch connection medium:', error);
+        setmedium('error')
       }
-    };
+    }
 
-    fetchRelayStatus();
-    fetchLogs();
 
-    // Auto refresh
-    const interval1 = setInterval(fetchRelayStatus, 1000);
-    const interval2 = setInterval(fetchLogs, 5000);
-    return () => {
-      clearInterval(interval1);
-      clearInterval(interval2);
-    };
+    
+  
+    fetchRelayStatus()
+    fetchalldata()
+
+    
+    // Auto refresh every 5 seconds
+  const interval = setInterval(fetchRelayStatus, 1000);
+  // Cleanup on unmount
+  return () => clearInterval(interval);
+
+  
   }, []);
+
+
 
   return (
     <div className="min-h-screen bg-[#0F1727] text-white">
@@ -160,40 +178,23 @@ const Home = () => {
 
           {/*  Detection Logs */}
           <div className="bg-[#141A30] rounded-3xl p-4">
-            <h3 className="text-lg mb-4"> DETECTION LOGS</h3>
+            <h3 className="text-lg mb-4"> </h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <div className="bg-[#0F1727] text-gray-400 p-2">TIME STAMP</div>
-                {logs.length > 0 ? (
-                  logs.map((log, idx) => (
-                    <div
-                      className={`mt-2 text-lg ${idx % 2 !== 0 ? 'bg-[#0F1727]' : ''}`}
-                      key={idx}
-                    >
-                      {log.timestamp}
-                    </div>
-                  ))
-                ) : (
-                  <div className="mt-2 text-lg text-gray-500">No logs</div>
-                )}
+                <div className="mt-2 text-lg">2025-05-24 12:31:45</div>
+                <div className="mt-2 bg-[#0F1727] text-lg">2025-05-24 12:31:45</div>
+                <div className="mt-2 text-lg">2025-05-24 12:31:45</div>
               </div>
               <div>
                 <div className="bg-[#0F1727] text-gray-400 p-2">DETAILS</div>
-                {logs.length > 0 ? (
-                  logs.map((log, idx) => (
-                    <div
-                      className={`mt-2 text-lg ${idx % 2 !== 0 ? 'bg-[#0F1727]' : ''}`}
-                      key={idx}
-                    >
-                      {log.medium}
-                    </div>
-                  ))
-                ) : (
-                  <div className="mt-2 text-lg text-gray-500">No logs</div>
-                )}
+                <div className="mt-2 text-lg">Face detected</div>
+                <div className="mt-2 bg-[#0F1727] text-lg">Face detected</div>
+                <div className="mt-2 text-lg">Face detected</div>
               </div>
             </div>
           </div>
+          
 
           {/* Devices */}
           <div className="bg-[#141A30] rounded-3xl p-4">
