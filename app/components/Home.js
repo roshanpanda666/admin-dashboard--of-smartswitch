@@ -130,8 +130,8 @@ const Home = () => {
             <div className="flex gap-2 mt-2">
               <div className="flex-1 bg-[#273464] text-[#09A1FF] rounded-2xl flex items-center justify-center text-xl">ONLINE</div>
               <div className={`${relayStatus === 'ON' ? 'text-green-400' : 'text-red-500'} w-20 text-center`}>{relayStatus==='ON' ? 'Turned-on':'turned-off'}</div>
-              <div className="flex-1 bg-[#0F1727] rounded-2xl flex items-center justify-between px-2">
-                <div className="bg-[#EF6060] w-[40%] h-[70%] flex items-center justify-center font-bold text-black rounded-full text-xl cursor-pointer" onClick={handlePost}>OFF</div>
+              <div className={ `${relayStatus === 'ON' ? 'justify-end':'justify-between'} flex-1 bg-[#0F1727] rounded-2xl flex items-center justify-between px-2`}>
+                <div className={`${relayStatus === 'ON'?'bg-green-400 ':'bg-[#EF6060]'} w-[40%] h-[70%] flex items-center justify-center font-bold text-black rounded-full text-xl cursor-pointer`} onClick={handlePost}>OFF</div>
                 <div className="flex flex-col gap-1 w-[20%] h-[70%]">
                   <div className="w-full h-2 bg-[#31C370] rounded-4xl"></div>
                   <div className="w-full h-2 bg-[#D9D9D9] rounded-4xl"></div>

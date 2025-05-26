@@ -10,10 +10,13 @@ const Nav = () => {
     <>
       {/* Large screens */}
       <div className='lg:flex hidden justify-between items-center px-20 py-4 text-gray-400 font-mono border-b border-[#273464]'>
+        <Link href='/'>
         <div>
           <div className='text-[#09A1FF] text-2xl cursor-pointer'>S.P.A.R.K</div>
           <div className='text-sm'>control panel</div>
         </div>
+        </Link>
+        
         <div className='flex gap-10 text-lg'>
           <Link href='mongodata'><div className='hover:text-[#09A1FF] cursor-pointer'>MongoDB data</div>
 </Link>
@@ -25,10 +28,13 @@ const Nav = () => {
       {/* Mobile view */}
       <div className='lg:hidden flex flex-col px-4 py-3 border-b border-[#273464] text-gray-300 font-mono'>
         <div className='flex justify-between items-center'>
+          <Link href='/'>
           <div>
             <div className='text-[#09A1FF] text-xl'>SMART SWITCH</div>
             <div className='text-sm'>control panel</div>
           </div>
+          </Link>
+          
           <button onClick={() => setMenuOpen(!menuOpen)} className='text-white'>
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
