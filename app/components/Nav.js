@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
 
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,7 +15,8 @@ const Nav = () => {
           <div className='text-sm'>control panel</div>
         </div>
         <div className='flex gap-10 text-lg'>
-          <div className='hover:text-[#09A1FF] cursor-pointer'>MongoDB data</div>
+          <Link href='mongodata'><div className='hover:text-[#09A1FF] cursor-pointer'>MongoDB data</div>
+</Link>
           <div className='hover:text-[#09A1FF] cursor-pointer'>Remote control</div>
           <div className='hover:text-[#09A1FF] cursor-pointer'>Dashboard</div>
         </div>
@@ -33,7 +35,7 @@ const Nav = () => {
         </div>
         {menuOpen && (
           <div className='mt-4 flex flex-col gap-3 text-base'>
-            <div className='hover:text-[#09A1FF] cursor-pointer'>MongoDB data</div>
+            <Link href='mongodata'><div className='hover:text-[#09A1FF] cursor-pointer'>MongoDB data</div></Link>
             <div className='hover:text-[#09A1FF] cursor-pointer'>Remote control</div>
             <div className='hover:text-[#09A1FF] cursor-pointer'>Dashboard</div>
           </div>
