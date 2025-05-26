@@ -10,7 +10,7 @@ const Nav = () => {
       {/* Large screens */}
       <div className='lg:flex hidden justify-between items-center px-20 py-4 text-gray-400 font-mono border-b border-[#273464]'>
         <div>
-          <div className='text-[#09A1FF] text-2xl cursor-pointer'>SMART SWITCH</div>
+          <div className='text-[#09A1FF] text-2xl cursor-pointer'>S.P.A.R.K</div>
           <div className='text-sm'>control panel</div>
         </div>
         <div className='flex gap-10 text-lg'>

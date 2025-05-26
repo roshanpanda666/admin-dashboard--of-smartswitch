@@ -146,7 +146,7 @@ const Home = () => {
               <h3 className="text-md text-gray-300">CONNECTION STATUS</h3>
               <div className="text-[#31C370] text-xl">{ statuss ? "connected" :"disconnected"}</div>
             </div>
-            <div className="border-2 border-[#273464] bg-[#090F19] rounded-2xl w-20 h-16 flex items-center justify-center text-3xl">{relayStatus === "ON"?"^_^":"x_x"}</div>
+            <div className="border-2 border-[#273464] bg-[#090F19] rounded-2xl w-20 h-16 flex items-center justify-center text-3xl">{relayStatus === "ON"?"^_^":"X_X"}</div>
           </div>
         </div>
 
