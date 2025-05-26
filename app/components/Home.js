@@ -133,8 +133,8 @@ const Home = () => {
               <div className={ `${relayStatus === 'ON' ? 'justify-end':'justify-between'} flex-1 bg-[#0F1727] rounded-2xl flex items-center justify-between px-2`}>
                 <div className={`${relayStatus === 'ON'?'bg-green-400 ':'bg-[#EF6060]'} w-[40%] h-[70%] flex items-center justify-center font-bold text-black rounded-full text-xl cursor-pointer`} onClick={handlePost}>OFF</div>
                 <div className="flex flex-col gap-1 w-[20%] h-[70%]">
-                  <div className="w-full h-2 bg-[#31C370] rounded-4xl"></div>
-                  <div className="w-full h-2 bg-[#D9D9D9] rounded-4xl"></div>
+                  <div className={`${relayStatus === 'ON' ?'bg-[#31C370]':'bg-[#545454]' } w-full h-2  rounded-4xl`}></div>
+                  <div className={`${relayStatus === 'OFF' ?'bg-[#EF6060]':'bg-[#545454]' } w-full h-2  rounded-4xl`}></div>
                 </div>
               </div>
             </div>
